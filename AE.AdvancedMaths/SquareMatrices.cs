@@ -87,6 +87,9 @@ namespace AE.AdvancedMaths
         //elementary row operations
         //reduced row echalon form
         //Eigen decomposition
+
+
+
         //vector matrix multiplication
         //tosting override
     }

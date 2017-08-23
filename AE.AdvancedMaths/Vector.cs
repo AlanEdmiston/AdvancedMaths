@@ -8,8 +8,8 @@ namespace AE.AdvancedMaths
 {
     public class Vector
     {
-        int size;
-        double[] elements;
+        public int size;
+        public double[] elements;
 
         void main()
         {
@@ -18,7 +18,12 @@ namespace AE.AdvancedMaths
 
         public static Vector operator +(Vector vect1, Vector vect2)
         {
-            Vector output = new Vector();
+            if(vect1.size != vect2.size)
+            {
+                throw new InvalidOperationException("vectors are different dimensions");
+            }
+            Vector output = new Vector { size = vect1.size};
+            output.elements = new double[output.size];
             for (int i = 0; i < vect1.size; i++)
             {
                 output.elements[i] = vect1.elements[i] + vect2.elements[i];
@@ -27,7 +32,12 @@ namespace AE.AdvancedMaths
         }
         public static Vector operator -(Vector vect1, Vector vect2)
         {
-            Vector output = new Vector();
+            if (vect1.size != vect2.size)
+            {
+                throw new InvalidOperationException("vectors are different dimensions");
+            }
+            Vector output = new Vector { size = vect1.size };
+            output.elements = new double[output.size];
             for (int i = 0; i < vect1.size; i++)
             {
                 output.elements[i] = vect1.elements[i] - vect2.elements[i];
@@ -37,7 +47,8 @@ namespace AE.AdvancedMaths
         public static Vector operator *(double scalar, Vector vect)
         {
             Vector output = new Vector();
-            for(int i = 0; i < vect.size; i++)
+            output.elements = new double[output.size];
+            for (int i = 0; i < vect.size; i++)
             {
                 output.elements[i] = scalar * vect.elements[i];
             }

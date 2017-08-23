@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvancedMaths.cs" />
+    <Compile Include="RectangleMatrix.cs" />
     <Compile Include="SquareMatrices.cs" />
+    <Compile Include="Statistics.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="ComplexVector.cs" />
     <Compile Include="Complex.cs" />

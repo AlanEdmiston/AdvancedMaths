@@ -15,7 +15,7 @@ namespace AE.AdvancedMaths
         {
             get
             {
-                return new double[2] { Re, Im };
+                return new double[]{ Re, Im};
             }
             set
             {
@@ -45,8 +45,8 @@ namespace AE.AdvancedMaths
             }
             set
             {
-                ReIm[0] = value[0] * Math.Cos(value[1]);
-                ReIm[1] = value[0] * Math.Sin(value[1]);
+                Re = value[0] * Math.Cos(value[1]);
+                Im = value[0] * Math.Sin(value[1]);
             }
         }
 
@@ -74,23 +74,26 @@ namespace AE.AdvancedMaths
         }
         public static Complex operator /(Complex comp1, Complex comp2)
         {
+            if(comp2.Modulus == 0)
+            {
+                throw new DivideByZeroException();
+            }
             Complex output = new Complex();
-            output.ModArg[0] = comp1.ModArg[0] / comp2.ModArg[0];
-            output.ModArg[1] = comp1.ModArg[1] - comp2.ModArg[1];
+            output.ModArg = new double[] { comp1.ModArg[0] / comp2.ModArg[0], comp1.ModArg[1] - comp2.ModArg[1] };
             return output;
         }
         public static Complex operator +(Complex comp1, Complex comp2)
         {
             Complex output = new Complex();
-            output.ReIm[0] = comp1.ReIm[0] + comp2.ReIm[0];
-            output.ReIm[1] = comp1.ReIm[1] + comp2.ReIm[1];
+            output.Re = comp1.ReIm[0] + comp2.ReIm[0];
+            output.Im = comp1.ReIm[1] + comp2.ReIm[1];
             return output;
         }
         public static Complex operator -(Complex comp1, Complex comp2)
         {
             Complex output = new Complex();
-            output.ReIm[0] = comp1.ReIm[0] - comp2.ReIm[0];
-            output.ReIm[1] = comp1.ReIm[1] - comp2.ReIm[1];
+            output.Re = comp1.ReIm[0] - comp2.ReIm[0];
+            output.Im = comp1.ReIm[1] - comp2.ReIm[1];
             return output;
         }
 

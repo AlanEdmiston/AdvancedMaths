@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AE.AdvancedMaths
 {
-    public class AdvancedMaths
+    public class FactorialAndGamma
     {
         public static int Fact(int n)
         {
-            if (n > 12)
+            if(n > 12)
             {
                 throw new ArgumentException("n is too large");
             }
