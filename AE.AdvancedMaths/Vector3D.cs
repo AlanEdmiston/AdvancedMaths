@@ -8,7 +8,7 @@ namespace AE.AdvancedMaths
 {
     public class Vector3D
     {
-        double x, y, z;
+        public double x, y, z;
 
         public static Vector3D operator +(Vector3D vect1, Vector3D vect2)
         {
@@ -54,9 +54,12 @@ namespace AE.AdvancedMaths
             output.z = vect1.x * vect2.y - vect1.y * vect2.x;
             return output;
         }
-        public double Mod(Vector3D vect)
+        double Mod
         {
-            return Math.Sqrt(vect.x * vect.x + vect.y * vect.y + vect.z * vect.z);
+            get
+            {
+                return Math.Sqrt(x * x + y * y + z * z);
+            }
         }
         public Vector3D UnitVector(Vector3D vect)
         {

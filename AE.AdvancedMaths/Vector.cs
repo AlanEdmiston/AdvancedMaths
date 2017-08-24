@@ -92,7 +92,6 @@ namespace AE.AdvancedMaths
             }
             return output;
         }
-        //convert between coordinate systems
         //tostring override
     }
 }

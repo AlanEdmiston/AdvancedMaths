@@ -145,6 +145,5 @@ namespace AE.AdvancedMaths
             }
             return output;
         }
-
     }
 }
