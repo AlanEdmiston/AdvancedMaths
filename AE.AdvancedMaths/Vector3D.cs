@@ -42,11 +42,11 @@ namespace AE.AdvancedMaths
             output.z = vect.z / scalar;
             return output;
         }
-        public double DotProduct(Vector3D vect1, Vector3D vect2)
+        public static double DotProduct(Vector3D vect1, Vector3D vect2)
         {
             return vect1.x * vect2.x + vect1.y * vect2.y + vect1.z * vect2.z;
         }
-        public Vector3D CrossProduct(Vector3D vect1, Vector3D vect2)
+        public static Vector3D CrossProduct(Vector3D vect1, Vector3D vect2)
         {
             Vector3D output = new Vector3D();
             output.x = vect1.y * vect2.z - vect1.z * vect2.y;
@@ -54,7 +54,7 @@ namespace AE.AdvancedMaths
             output.z = vect1.x * vect2.y - vect1.y * vect2.x;
             return output;
         }
-        double Mod
+        public double Mod
         {
             get
             {
@@ -64,9 +64,9 @@ namespace AE.AdvancedMaths
         public Vector3D UnitVector(Vector3D vect)
         {
             Vector3D output = new Vector3D();
-            output.x = vect.x / Mod(vect);
-            output.y = vect.y / Mod(vect);
-            output.z = vect.z / Mod(vect);
+            output.x = vect.x / vect.Mod;
+            output.y = vect.y / vect.Mod;
+            output.z = vect.z / vect.Mod;
             return output;
         }
         //convert between coordinate systems

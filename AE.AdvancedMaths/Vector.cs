@@ -73,22 +73,26 @@ namespace AE.AdvancedMaths
             }
             return output;
         }
-        public double Mod(Vector vect)
+        public double Mod
         {
-            double mod = 0;
-            for (int i = 0; i < vect.size; i++)
+            get
             {
-                mod += Math.Pow(vect.elements[i], 2);
+                double mod = 0;
+                for (int i = 0; i < size; i++)
+                {
+                    mod += Math.Pow(elements[i], 2);
+                }
+                mod = Math.Sqrt(mod);
+                return mod;
             }
-            mod = Math.Sqrt(mod);
-            return mod;
+            
         }
         public Vector UnitVector(Vector vect)
         {
             Vector output = new Vector();
             for(int i = 0; i < vect.size; i++)
             {
-                output.elements[i] = vect.elements[i] / Mod(vect);
+                output.elements[i] = vect.elements[i] / vect.Mod;
             }
             return output;
         }
