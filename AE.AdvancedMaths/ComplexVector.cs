@@ -10,14 +10,17 @@ namespace AE.AdvancedMaths
     {
         public int size;
         Complex[] elements;
-        void main()
+        public ComplexVector(int size)
         {
-            elements = new Complex[size];
+            this.elements = new Complex[size];
         }
-
+        public ComplexVector(Complex[] elements)
+        {
+            this.elements = elements;
+        }
         public static ComplexVector operator +(ComplexVector vect1, ComplexVector vect2)
         {
-            ComplexVector output = new ComplexVector();
+            ComplexVector output = new ComplexVector(vect1.size);
             for (int i = 0; i < vect1.size; i++)
             {
                 output.elements[i] = vect1.elements[i] + vect2.elements[i];
@@ -26,7 +29,7 @@ namespace AE.AdvancedMaths
         }
         public static ComplexVector operator -(ComplexVector vect1, ComplexVector vect2)
         {
-            ComplexVector output = new ComplexVector();
+            ComplexVector output = new ComplexVector(vect1.size);
             for (int i = 0; i < vect1.size; i++)
             {
                 output.elements[i] = vect1.elements[i] - vect2.elements[i];
@@ -35,37 +38,38 @@ namespace AE.AdvancedMaths
         }
         public static ComplexVector operator *(Complex scalar, ComplexVector vect)
         {
-            ComplexVector output = new ComplexVector();
+            ComplexVector output = new ComplexVector(vect.size);
             for (int i = 0; i < vect.size; i++)
             {
                 output.elements[i] = scalar * vect.elements[i];
             }
             return output;
         }
+        public static ComplexVector operator *(ComplexVector vect, Complex scalar)
+        {
+            return scalar * vect;
+        }
         public static ComplexVector operator /(ComplexVector vect, Complex scalar)
         {
-            ComplexVector output = new ComplexVector();
+            ComplexVector output = new ComplexVector(vect.size);
             for (int i = 0; i < vect.size; i++)
             {
                 output.elements[i] = vect.elements[i] / scalar;
             }
             return output;
         }
-
-        public Complex DotProduct(ComplexVector vect1, ComplexVector vect2)
+        public static Complex operator *(ComplexVector vect1, ComplexVector vect2)
         {
-            Complex output = new Complex { Im = 0, Re = 0};
+            Complex output = new Complex();
             for (int i = 0; i < vect1.size; i++)
             {
                 output += vect1.elements[i] * vect2.elements[i];
             }
             return output;
         }
-
         public ComplexVector Dagger(ComplexVector vect)
         {
-            ComplexVector newVect = new ComplexVector();
-            newVect.size = vect.size;
+            ComplexVector newVect = new ComplexVector(vect.size);
             for (int i = 0; i < vect.size; i++)
             {
                 newVect.elements[i] = Complex.Conjugate(vect.elements[i]);
@@ -75,15 +79,15 @@ namespace AE.AdvancedMaths
         public double Mod(ComplexVector vect)
         {
             double mod;
-            mod = DotProduct(Dagger(vect), vect).Re;
+            mod = (Dagger(vect) * vect).Re;
             return mod;
         }
         public ComplexVector Normalise(ComplexVector vect)
         {
-            ComplexVector output = new ComplexVector();
+            ComplexVector output = new ComplexVector(vect.size);
             for (int i = 0; i < vect.size; i++)
             {
-                output.elements[i] = vect.elements[i] / Complex.ToComplex(Mod(vect));
+                output.elements[i] = vect.elements[i] / (Complex)(Mod(vect));
             }
             return output;
         }

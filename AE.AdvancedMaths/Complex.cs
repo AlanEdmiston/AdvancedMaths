@@ -8,6 +8,17 @@ namespace AE.AdvancedMaths
 {
     public class Complex
     {
+        public Complex(double real, double imaginary)
+        {
+            this.Re = real;
+            this.Im = imaginary;
+        }
+        public Complex()
+        {
+            this.Re = 0;
+            this.Im = 0;
+        }
+        public static readonly Complex i = new Complex(0, 1);
         //properties
         public double Re, Im;
 
@@ -64,11 +75,54 @@ namespace AE.AdvancedMaths
                 return ModArg[1];
             }
         }
+        //casts
+        public static explicit operator Complex(double x)
+        {
+            return new Complex(x, 0);
+        }
+        public static explicit operator Complex(float x)
+        {
+            return new Complex(x, 0);
+        }
+        public static explicit operator Complex(int x)
+        {
+            return new Complex(x, 0);
+        }
+        public static explicit operator Complex(long x)
+        {
+            return new Complex(x, 0);
+        }
+        public static explicit operator Complex(decimal x)
+        {
+            return new Complex((double)x, 0);
+        }
+        public static explicit operator double(Complex z)
+        {
+            if(Math.Abs(z.Im) > 0.000001)
+            {
+                throw new InvalidCastException("z cannot be cast to a double as it has a non-zero imaginary component");
+            }
+            return z.Re;
+        }
 
         //basic operations
         public static Complex operator *(Complex comp1, Complex comp2)
         {
             Complex output = new Complex();
+            output.ModArg = new double[] { comp1.ModArg[0] * comp2.ModArg[0], comp1.ModArg[1] + comp2.ModArg[1] };
+            return output;
+        }
+        public static Complex operator *(double real, Complex comp2)
+        {
+            Complex output = new Complex();
+            Complex comp1 = (Complex)real;
+            output.ModArg = new double[] { comp1.ModArg[0] * comp2.ModArg[0], comp1.ModArg[1] + comp2.ModArg[1] };
+            return output;
+        }
+        public static Complex operator *(Complex comp1, double real)
+        {
+            Complex output = new Complex();
+            Complex comp2 = (Complex)real;
             output.ModArg = new double[] { comp1.ModArg[0] * comp2.ModArg[0], comp1.ModArg[1] + comp2.ModArg[1] };
             return output;
         }
@@ -99,13 +153,13 @@ namespace AE.AdvancedMaths
 
         static public Complex Conjugate(Complex comp)
         {
-            return new Complex { Re = comp.Re, Im = -comp.Im };
+            return new Complex (comp.Re, -comp.Im );
         }
 
         //powers
         static public Complex Exp(Complex comp)
         {
-            Complex output = new Complex
+            Complex output = new Complex()
             {
                 ModArg = new double[] { Math.Exp(comp.ReIm[0]), comp.ReIm[1] }
             };
@@ -113,7 +167,7 @@ namespace AE.AdvancedMaths
         }
         static public Complex Ln(Complex comp)
         {
-            Complex output = new Complex
+            Complex output = new Complex()
             {
                 ReIm = new double[] { Math.Log(comp.ModArg[0]), comp.ModArg[1] }
             };
@@ -127,19 +181,19 @@ namespace AE.AdvancedMaths
             output = Exp(comp2 * output);
             return output;
         }
+
         //trigonometric functions
         public Complex Sin(Complex comp)
         {
             Complex output = new Complex();
-            Complex i = new Complex { ReIm = new double[] { 0, 1 } };
-            output = (Exp(i * comp) - Exp(ToComplex(-1) * i * comp)) / ToComplex(2);
+            output = (Exp(i * comp) - Exp((Complex)(-1) * i * comp)) / (Complex)2;
             return output;
         }
         public Complex Cos(Complex comp)
         {
             Complex output = new Complex();
             Complex i = new Complex { ReIm = new double[] { 0, 1 } };
-            output = (Exp(i * comp) + Exp(ToComplex(-1) * i * comp)) / ToComplex(2);
+            output = (Exp(i * comp) + Exp((Complex)(-1) * i * comp)) / (Complex)2;
             return output;
         }
         public Complex Tan(Complex comp)
@@ -152,24 +206,19 @@ namespace AE.AdvancedMaths
         public Complex Sinh(Complex comp)
         {
             Complex output = new Complex();
-            output = (Exp(comp) - Exp(ToComplex(-1) * comp)) / ToComplex(2);
+            output = (Exp(comp) - Exp((Complex)(-1) * comp)) / (Complex)2;
             return output;
         }
         public Complex Cosh(Complex comp)
         {
             Complex output = new Complex();
-            output = (Exp(comp) + Exp(ToComplex(-1) * comp)) / ToComplex(2);
+            output = (Exp(comp) + Exp((Complex)(-1) * comp)) / (Complex)2;
             return output;
         }
         public Complex Tanh(Complex comp)
         {
             Complex output = new Complex();
             output = Sinh(comp) / Cosh(comp);
-            return output;
-        }
-        static public Complex ToComplex(double real)
-        {
-            Complex output = new Complex { ReIm = new double[] { real, 0 } };
             return output;
         }
 

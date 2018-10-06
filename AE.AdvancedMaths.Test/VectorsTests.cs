@@ -10,8 +10,8 @@ namespace AE.AdvancedMaths.Test
         public void VectAddTest()
         {
             Vector vect1, vect2;
-            vect1 = new Vector { size = 3 };
-            vect2 = new Vector { size = 3 };
+            vect1 = new Vector (3);
+            vect2 = new Vector (3);
 
             vect1.elements = new double[] { 1, 3, 2 };
             vect2.elements = new double[] { 5, 1, 8 };
@@ -35,8 +35,8 @@ namespace AE.AdvancedMaths.Test
         public void VectAdd_Throws_Exception_Different_Dimensions()
         {
             Vector vect1, vect2;
-            vect1 = new Vector { size = 4 };
-            vect2 = new Vector { size = 3 };
+            vect1 = new Vector (4);
+            vect2 = new Vector (3);
 
             vect1.elements = new double[]{ 1, 3, 2, 0};
             vect2.elements = new double[] { 5, 1, 8};
@@ -48,8 +48,8 @@ namespace AE.AdvancedMaths.Test
         public void VectSubTest()
         {
             Vector vect1, vect2;
-            vect1 = new Vector { size = 3 };
-            vect2 = new Vector { size = 3 };
+            vect1 = new Vector (3);
+            vect2 = new Vector (3);
 
             vect1.elements = new double[] { 1, 3, 2 };
             vect2.elements = new double[] { 5, 1, 8 };
