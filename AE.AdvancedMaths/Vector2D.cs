@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AE.AdvancedMaths
 {
-    class Vector2D
+    public class Vector2D
     {
         Vector compositionVector;
         public Vector2D()
@@ -28,7 +28,7 @@ namespace AE.AdvancedMaths
             }
             set
             {
-                this.compositionVector.elements[0] = x;
+                this.compositionVector.elements[0] = value;
             }
         }
         public double y
@@ -39,7 +39,7 @@ namespace AE.AdvancedMaths
             }
             set
             {
-                this.compositionVector.elements[1] = y;
+                this.compositionVector.elements[1] = value;
             }
         }
 

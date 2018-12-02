@@ -13,9 +13,10 @@ namespace AE.AdvancedMaths
         {
             this.compositionVector = new Vector(new double[] { x, y, z });
         }
+
         private Vector3D(Vector compositionVector)
         {
-            this.compositionVector = new Vector(new double[] { x, y, z });
+            this.compositionVector = compositionVector;
         }
         public double x
         {
@@ -25,7 +26,7 @@ namespace AE.AdvancedMaths
             }
             set
             {
-                this.compositionVector.elements[0] = x;
+                this.compositionVector.elements[0] = value;
             }
         }
         public double y
@@ -36,7 +37,7 @@ namespace AE.AdvancedMaths
             }
             set
             {
-                this.compositionVector.elements[1] = y;
+                this.compositionVector.elements[1] = value;
             }
         }
         public double z
@@ -47,7 +48,7 @@ namespace AE.AdvancedMaths
             }
             set
             {
-                this.compositionVector.elements[2] = z;
+                this.compositionVector.elements[2] = value;
             }
         }
 
@@ -57,7 +58,8 @@ namespace AE.AdvancedMaths
         }
         public static Vector3D operator -(Vector3D vect1, Vector3D vect2)
         {
-            return new Vector3D(vect1.compositionVector - vect2.compositionVector);
+            Vector newVect = vect1.compositionVector - vect2.compositionVector;
+            return new Vector3D(newVect);
         }
         public static Vector3D operator -(Vector3D vect1)
         {

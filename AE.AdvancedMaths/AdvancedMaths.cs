@@ -10,6 +10,7 @@ namespace AE.AdvancedMaths
     {
         public static double[,] FourierSeries(Func<double, double> function, double start, double end, int coeffs, int precision)
         {
+
             double L = end - start;
             double[,] output = new double[coeffs, 2];
             for(int i = 0; i < coeffs; i++)
@@ -70,7 +71,7 @@ namespace AE.AdvancedMaths
 
         public static double Bisection(Func<double, double> f, double x0, double xEnd)
         {
-
+            return 0;
         }
     }
 }

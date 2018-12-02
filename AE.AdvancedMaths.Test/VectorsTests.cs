@@ -22,7 +22,7 @@ namespace AE.AdvancedMaths.Test
                 output.elements[i] = Math.Round(output.elements[i], 2);
             }
 
-            Vector real = new Vector();
+            Vector real = new Vector(3);
             real.elements = new double[] { 6, 4, 10 };
             for (int i = 0; i < vect1.size; i++)
             {
@@ -60,12 +60,19 @@ namespace AE.AdvancedMaths.Test
                 output.elements[i] = Math.Round(output.elements[i], 2);
             }
 
-            Vector real = new Vector();
+            Vector real = new Vector(3);
             real.elements = new double[] { -4, 2, -6 };
             for (int i = 0; i < vect1.size; i++)
             {
                 Assert.AreEqual(real.elements[i], output.elements[i]);
             }
+        }
+
+        [TestMethod]
+        public void VectModTest()
+        {
+            Vector vect = new Vector(new double[]{ 3, 4});
+            Assert.AreEqual(vect.Mod, 5);
         }
     }
 }

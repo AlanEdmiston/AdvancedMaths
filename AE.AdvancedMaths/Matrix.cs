@@ -292,7 +292,7 @@ namespace AE.AdvancedMaths
             }
             return det;
         }
-        public static Dictionary<double, Vector> EigenDecomposition(Matrix m)
+        /*public static Dictionary<double, Vector> EigenDecomposition(Matrix m)
         {
             if(m.width != m.height)
             {
@@ -311,7 +311,7 @@ namespace AE.AdvancedMaths
                     return y;
                 };
             }
-        }
+        }*/
         //cast to complex matrix
         //eigen decomposition
     }
